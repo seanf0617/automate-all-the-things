@@ -1,0 +1,22 @@
+{
+  "name": "automate-all-the-things",
+  "version": "1.0.0",
+  "description": "liatro technical exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisgallivan/automate-all-the-things.git"
+  },
+  "author": "chrisgallivan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrisgallivan/automate-all-the-things/issues"
+  },
+  "homepage": "https://github.com/chrisgallivan/automate-all-the-things#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
