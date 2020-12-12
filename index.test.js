@@ -20,10 +20,10 @@ it("Tests the endpoint message === Automate all the things!", async done =>
     done();
     
 })
-it("Tests the endpoint timestamp === 1529729125", async done =>
+it("Tests the endpoint timestamp exists and has a value less than the test's current timestamp", async done =>
 {
     const res = await request.get("/url");
-    expect(res.body.timestamp).toBe("1529729125");
+    expect(res.body.timestamp).toBeLessThan(Math.floor(Date.now() / 1000));
     done();
     
 })
