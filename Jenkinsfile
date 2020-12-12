@@ -9,7 +9,9 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
+                script{
                  docker.build("chrisgallivan/automate-all-the-things-docker", "--no-cache -f dockerfile .")
+                }
             }
         }
         stage('Deploy') {
