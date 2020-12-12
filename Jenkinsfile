@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+        imagename = "chrisgallivan/automate-all-the-things"
+    }
     agent any
     stages {
         stage('Build') {
@@ -10,7 +13,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script{
-                 docker.build("chrisgallivan/automate-all-the-things-docker", "--no-cache -f dockerfile .")
+                 docker.build imagename
                 }
             }
         }
