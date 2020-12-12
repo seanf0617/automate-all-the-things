@@ -7,9 +7,9 @@ pipeline {
                 sh 'npm install-test'
                   }
         }
-        stage('Test') {
+        stage('Build Docker Image') {
             steps {
-                echo 'Testing..'
+                 docker.build(dockbuild, "--no-cache -f dockerfile .")
             }
         }
         stage('Deploy') {
