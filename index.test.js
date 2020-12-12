@@ -20,3 +20,10 @@ it("Tests the endpoint message === Automate all the things!", async done =>
     done();
     
 })
+it("Tests the endpoint timestamp === 1529729125", async done =>
+{
+    const res = await request.get("/url");
+    expect(res.body.timestamp).toBe("1529729125");
+    done();
+    
+})
