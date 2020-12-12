@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        imagename = "chrisgallivan/automate-all-the-things"
+        imagename = "chrisgallivan/automate-all-the-things-docker"
     }
     agent any
     stages {
