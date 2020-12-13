@@ -45,6 +45,7 @@ pipeline {
                 script {
                     echo 'Provisioning Kubernetes Cluster...'
                     AWS_CREDENTIALS = credentials('AWS_ACCESS_KEY')
+                    sh "terraform -version"
                 }
             }
         }
