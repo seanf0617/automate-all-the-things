@@ -32,6 +32,15 @@ pipeline {
                 }
              }
         }
+        stage('Remove Local Image') {
+            steps {
+               script {
+                    sh "docker rmi $dockerImage:$BUILD_NUMBER"
+                    sh "docker rmi $dockerImage:latest"
+                    }
+                }
+             }
+        }
         stage('Provision Cluster') {
             steps {
                 script {
