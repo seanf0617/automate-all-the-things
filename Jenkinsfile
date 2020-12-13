@@ -48,7 +48,7 @@ pipeline {
                 script {
                     echo 'Provisioning Kubernetes Cluster...'
                     AWS_CREDENTIALS = credentials('AWS_ACCESS_KEY')
-                    sh "terraform init -backend-config="$BACKEND_FILE" backend-config="$BACKEND_PATH"
+                    sh 'terraform init -backend-config= "' + '"$BACKEND_FILE"' +  '"backend-config=' + '"$BACKEND_PATH"'
                 }
             }
         }
