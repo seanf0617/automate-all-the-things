@@ -3,7 +3,8 @@ pipeline {
         imageName = "chrisgallivan/automate-all-the-things-docker"
         registryCredential = 'docker_hub'
         dockerImage = ''
-        AWS_CREDENTIALS = ''
+        AWS_CREDENTIALS_USR = ''
+        AWS_CREDENTIALS_PSW = ''
         BACKEND_FILE = "terraformConfig.tf"
         BACKEND_PATH = "global/s3/terraform.tfstate"
         
@@ -47,8 +48,15 @@ pipeline {
             steps {
                 script {
                     echo 'Provisioning Kubernetes Cluster...'
-                    AWS_CREDENTIALS = credentials('AWS_ACCESS_KEY')
+                    //AWS_CREDENTIALS = credentials('AWS_ACCESS_KEY')
+                    withCredentials([
+			            [$class: 'UsernamePasswordMultiBinding', credentialsId: 'AWS_ACCESS_KEY',
+				        usernameVariable: '$AWS_CREDENTIALS_USR', passwordVariable: '$AWS_CREDENTIALS_PSW']
+		            ]) {
+                    
                     sh 'terraform init -backend-config= "' + '"$BACKEND_FILE"' +  '"backend-config=' + '"$BACKEND_PATH"'
+                    
+                    }
                 }
             }
         }
