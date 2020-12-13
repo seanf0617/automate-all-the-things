@@ -3,6 +3,7 @@ pipeline {
         imageName = "chrisgallivan/automate-all-the-things-docker"
         registryCredential = 'docker_hub'
         dockerImage = ''
+        AWS_CREDENTIALS = ''
     }
     agent any
     stages {
@@ -27,6 +28,14 @@ pipeline {
                     docker.withRegistry( '', registryCredential ) {
                         dockerImage.push("$BUILD_NUMBER")
                         dockerImage.push('latest')
+                    }
+                }
+            }
+            stage('Provision Cluster') {
+            steps {
+                echo 'Provisioning Kubernetes Cluster...'
+                script {
+                     AWS_CREDENTIALS = credentials('AWS_ACCESS_KEY')
                     }
                 }
             }
