@@ -7,6 +7,7 @@ pipeline {
         AWS_CREDENTIALS_PSW = ''
         BACKEND_FILE = "terraformConfig.tf"
         BACKEND_PATH = "global/s3/terraform.tfstate"
+	
         
     }
     agent any
@@ -55,6 +56,7 @@ pipeline {
 		            ]) {
                     
                     sh 'terraform init -backend-config= "' + '"$BACKEND_FILE"' +  '"backend-config=' + '"$BACKEND_PATH"'
+                    sh 'terraform plan -out=plan.tfplan ' + ' -var deployment_username="' + '"$AWS_CREDENTIALS_USR"' + ' -var deployment_password="' + '"$AWS_CREDENTIALS_PSW"'
                     
                     }
                 }
