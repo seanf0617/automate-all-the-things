@@ -19,7 +19,7 @@ resource "aws_s3_bucket" "terraform_state"{
   }
 }
 
-resource "aws_dynamo_table" "terraform_state_locks" {
+resource "aws_dynamodb_table" "terraform_state_locks" {
   name = "automate-all-the-things-terraform-locks"
   billing_mode = "PAY_PER_REQUEST"
   hash_key = "LockID"
