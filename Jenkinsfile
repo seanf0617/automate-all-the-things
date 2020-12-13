@@ -4,8 +4,6 @@ pipeline {
         registryCredential = 'docker_hub'
         dockerImage = ''
         AWS_CREDENTIALS = ''
-        AWS_CREDENTIALS_USR = ''
-        AWS_CREDENTIALS_PSW = ''
         BACKEND_FILE = "terraformConfig.tf"
         BACKEND_PATH = "global/s3/terraform.tfstate"
         
@@ -29,12 +27,12 @@ pipeline {
         stage('Deploy to Docker Hub') {
             steps {
                script {
-                       echo 'Publishing Image to Docker Hub...'
-                       docker.withRegistry( '', registryCredential ) {
-                       dockerImage.push("$BUILD_NUMBER")
-                       dockerImage.push('latest')
+                    echo 'Publishing Image to Docker Hub...'
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push('latest')
                     }
-                
+                }
              }
         }
         stage('Remove Local Image') {
@@ -51,10 +49,10 @@ pipeline {
                     echo 'Provisioning Kubernetes Cluster...'
                     AWS_CREDENTIALS = credentials('AWS_ACCESS_KEY')
                     sh 'terraform init -backend-config= "' + '"$BACKEND_FILE"' +  '"backend-config=' + '"$BACKEND_PATH"'
-                    //sh 'terraform plan -out= "' + '"plan.tfplan"' + ' -var deployment_username= "' + '"$AWS_CREDENTIALS_USR"' + ' -var deployment_password= "' + '"$AWS_CREDENTIALS_PSW"'
-                    //sh 'terraform apply -auto-approve "plan.tfplan"'
                 }
             }
-        }   
-    }    
+        }
+        
+    }
+        
 }
