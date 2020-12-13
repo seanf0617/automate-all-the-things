@@ -22,7 +22,7 @@ pipeline {
         stage('Deploy to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry( '', docker_hub ) {
+                    docker.withRegistry( '', docker_hub_credentials ) {
                         dockerImage.push("$BUILD_NUMBER")
                         dockerImage.push('latest')
                     }
