@@ -4,6 +4,9 @@ pipeline {
         registryCredential = 'docker_hub'
         dockerImage = ''
         AWS_CREDENTIALS = ''
+        BACKEND_FILE = "terraformConfig.tf"
+        BACKEND_PATH = "global/s3/terraform.tfstate"
+        
     }
     agent any
     stages {
@@ -45,7 +48,7 @@ pipeline {
                 script {
                     echo 'Provisioning Kubernetes Cluster...'
                     AWS_CREDENTIALS = credentials('AWS_ACCESS_KEY')
-                    sh "terraform init"
+                    sh "terraform init -backend-config="$BACKEND_FILE" backend-config="$BACKEND_PATH"
                 }
             }
         }
