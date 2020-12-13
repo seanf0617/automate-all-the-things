@@ -1,7 +1,7 @@
 pipeline {
     environment {
         imageName = "chrisgallivan/automate-all-the-things-docker"
-        registryCredential = 'docker_hub_credentials'
+        registryCredential = 'docker_hub'
         dockerImage = ''
     }
     agent any
@@ -22,7 +22,7 @@ pipeline {
         stage('Deploy to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry( '', docker_hub_credentials ) {
+                    docker.withRegistry( '', registryCredential ) {
                         dockerImage.push("$BUILD_NUMBER")
                         dockerImage.push('latest')
                     }
