@@ -15,31 +15,32 @@ pipeline {
         }
         stage('Build Docker Image') {
              steps {
-                echo 'Building Docker image...'
                 script{
+                    echo 'Building Docker image...'
                     dockerImage = docker.build imageName
                 }
-            }
+             }
         }
         stage('Deploy to Docker Hub') {
             steps {
-                echo 'Publishing Image to Docker Hub...'
-                script {
+               script {
+                    echo 'Publishing Image to Docker Hub...'
                     docker.withRegistry( '', registryCredential ) {
                         dockerImage.push("$BUILD_NUMBER")
                         dockerImage.push('latest')
                     }
                 }
-            }
-            stage('Provision Cluster') {
+             }
+        }
+        stage('Provision Cluster') {
             steps {
-                echo 'Provisioning Kubernetes Cluster...'
                 script {
-                     AWS_CREDENTIALS = credentials('AWS_ACCESS_KEY')
-                    }
+                    echo 'Provisioning Kubernetes Cluster...'
+                    AWS_CREDENTIALS = credentials('AWS_ACCESS_KEY')
                 }
             }
         }
+        
     }
         
 }
