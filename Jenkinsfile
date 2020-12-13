@@ -1,6 +1,8 @@
 pipeline {
     environment {
-        imagename = "chrisgallivan/automate-all-the-things-docker"
+        imageName = "chrisgallivan/automate-all-the-things-docker"
+        registryCredential = 'docker_hub_credentials'
+        dockerImage = ''
     }
     agent any
     stages {
@@ -13,14 +15,18 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script{
-                 docker.build imagename
+                 dockerImage = docker.build imageName
                 }
             }
         }
-        stage('Deploy') {
+        stage('Deploy to Docker Hub') {
             steps {
-                echo 'Deploying....'
+                script {
+                    docker.withRegistry( '', docker_hub ) {
+                        dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push('latest')
+                    }
+                }
             }
         }
-    }
 }
