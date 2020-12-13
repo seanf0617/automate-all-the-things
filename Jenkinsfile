@@ -35,8 +35,8 @@ pipeline {
         stage('Remove Local Image') {
             steps {
                script {
-                    sh "docker rmi $dockerImage:$BUILD_NUMBER"
-                    sh "docker rmi $dockerImage:latest"
+                    sh "docker rmi $imageName:$BUILD_NUMBER"
+                    sh "docker rmi $imageName:latest"
                     }
                 }
         }
