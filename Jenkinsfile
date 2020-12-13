@@ -39,7 +39,6 @@ pipeline {
                     sh "docker rmi $dockerImage:latest"
                     }
                 }
-             }
         }
         stage('Provision Cluster') {
             steps {
