@@ -1,22 +1,8 @@
-terraform {
- backend "s3" {
-   bucket = "automate-all-the-things-terraform-state"
-   key = "global/s3/terraform.tfstate"
-   region = "us-east-2"
-   dynamodb_table = "automate-all-the-things-terraform-locks"
-   encrypt = true
-   profile = "default"
-   aws_access_key_id = "AKIAI465OW3YDTNC7L6Q"
-   aws_secret_access_key = "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"
-  }
-}
-
 provider "aws" { 
   region="us-east-2"
-  aws_access_key_id = var.deployment_username
-  aws_secret_access_key = var.deployment_password
-  profile = "default"
-}
+  access_key= var.deployment_username
+  secret_key = var.deployment_password
+ }
 
 resource "aws_s3_bucket" "terraform_state"{
     bucket = "automate-all-the-things-terraform-state"
