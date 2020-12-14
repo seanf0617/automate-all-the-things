@@ -3,8 +3,8 @@ pipeline {
         imageName = "chrisgallivan/automate-all-the-things-docker"
         registryCredential = 'docker_hub'
         dockerImage = ''
-        AWS_CREDENTIALS_USR = ''
-        AWS_CREDENTIALS_PSW = ''
+        DEPLOYMENT_USER = ''
+        DEPLOYMENT_PASSWORD = ''
         BACKEND_FILE = "terraformConfig.tf"
         BACKEND_PATH = "global/s3/terraform.tfstate"
 	
