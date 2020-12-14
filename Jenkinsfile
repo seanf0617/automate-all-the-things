@@ -52,7 +52,7 @@ pipeline {
 			//            [$class: 'UsernamePasswordMultiBinding', credentialsId: 'AWS_ACCESS_KEY',
 			//	        usernameVariable: 'DEPLOYMENT_USERNAME', passwordVariable: 'DEPLOYMENT_PASSWORD']
 		          //  ]) {
-                    withCredentials([usernamePassword(credentialsId: 'AWS_ACCESS_KEY', passwordVariable: 'DEPLOYMENT_PASSWORD', usernameVariable: 'DEPLOYMENT_USER')]) {
+                    withCredentials([usernamePassword(credentialsId: 'AWS_ACCESS_KEY', passwordVariable: 'DEPLOYMENT_PASSWORD', usernameVariable: 'DEPLOYMENT_USERNAME')]) {
 		   
                     sh 'terraform init -backend-config="' + '"$BACKEND_FILE"' +  '" backend-config=' + '"subpath=$BACKEND_PATH"'
                     sh 'terraform plan -out=plan.tfplan ' + ' -var deployment_username="' + '"$DEPLOYMENT_USERNAME"' + ' -var deployment_password="' + '"$DEPLOYMENT_PASSWORD"'
