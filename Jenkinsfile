@@ -55,7 +55,7 @@ pipeline {
 				        usernameVariable: 'DEPLOYMENT_USER', passwordVariable: 'DEPLOYMENT_PASSWORD']
 		            ]) {
                     
-		    echo $AWS_CREDENTIALS_USR
+		   
                     sh 'terraform init -backend-config="' + '"$BACKEND_FILE"' +  '" backend-config=' + '"subpath=$BACKEND_PATH"'
                     sh 'terraform plan -out=plan.tfplan ' + ' -var deployment_username=' + $DEPLOYMENT_USER + ' -var deployment_password=' + $DEPLOYMENT_PASSWORD
                     
