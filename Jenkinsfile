@@ -57,7 +57,7 @@ pipeline {
 	            //sh 'export AWS_SECRET_KEY_ID=$DEPLOYMENT_PASSWORD' 
 	            sh 'cd /var/jenkins_home/workspace/automate-all-the-things'
                     //sh 'terraform init -backend-config="' + '"$BACKEND_FILE"' +  '" backend-config=' + '"subpath=$BACKEND_PATH"'
-	            sh 'terraform init -backend-config=$BACKEND_FILE'
+	            sh 'terraform init'
                     sh 'terraform plan -out=plan.tfplan -var deployment_username=$DEPLOYMENT_USERNAME -var deployment_password=$DEPLOYMENT_PASSWORD'
 		    sh 'terraform apply -auto-approve plan.tfplan'
                     
