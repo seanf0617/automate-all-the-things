@@ -6,10 +6,13 @@ terraform {
    dynamodb_table = "automate-all-the-things-terraform-locks"
    encrypt = true
    profile = "default"
+   aws_access_key_id = "AKIAI465OW3YDTNC7L6Q"
+   aws_secret_access_key = "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"
   }
 }
 
-provider "aws" {
+provider "aws" { = 
+  aws_secret_access_key = 
   region="us-east-2"
   access_key = var.deployment_username
   secret_key = var.deployment_password
