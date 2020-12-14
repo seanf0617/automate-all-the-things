@@ -11,11 +11,10 @@ terraform {
   }
 }
 
-provider "aws" { = 
-  aws_secret_access_key = 
+provider "aws" { 
   region="us-east-2"
-  access_key = var.deployment_username
-  secret_key = var.deployment_password
+  aws_access_key_id = var.deployment_username
+  aws_secret_access_key = var.deployment_password
   profile = "default"
 }
 
