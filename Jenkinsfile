@@ -54,6 +54,8 @@ pipeline {
 		            ]) {
                      
                     //sh 'terraform init --backend-config="' + 'access_key=$DEPLOYMENT_USERNAME"' + ' --backend-config="' + 'secret_key=$DEPLOYMENT_PASSWORD"' + ' -input=false -backend-config="' + '$BACKEND_FILE"' +  ' backend-config="' + 'subpath=$BACKEND_PATH"'
+	            sh 'aws configure set aws_access_key_id $DEPLOYMENT_USERNAME' 
+	            sh 'aws configure set aws_secret_key $DEPLOYMENT_PASSWORD' 
 	            sh 'terraform init'
                     sh 'terraform plan -out=plan.tfplan -input=false -var deployment_username=$DEPLOYMENT_USERNAME -var deployment_password=$DEPLOYMENT_PASSWORD'
                     
