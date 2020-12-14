@@ -5,7 +5,7 @@ terraform {
    region = "us-east-2"
    dynamodb_table = "automate-all-the-things-terraform-locks"
    encrypt = true
-  
+   profile = "default"
   }
 }
 
