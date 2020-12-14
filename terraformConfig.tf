@@ -5,5 +5,7 @@ terraform {
    region = "us-east-2"
    dynamodb_table = "automate-all-the-things-terraform-locks"
    encrypt = true
+   access_key = var.deployment_username
+   secret_key = var.deployment_password
   }
 }
