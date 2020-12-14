@@ -5,8 +5,6 @@ terraform {
    region = "us-east-2"
    dynamodb_table = "automate-all-the-things-terraform-locks"
    encrypt = true
-   access_key = "AKIAI465OW3YDTNC7L6Q"
-   secret_key = "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"
   
   }
 }
