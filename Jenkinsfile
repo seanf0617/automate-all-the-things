@@ -50,11 +50,11 @@ pipeline {
                 script {
                     echo 'Provisioning Kubernetes Cluster...'
                     //AWS_CREDENTIALS = credentials('AWS_ACCESS_KEY')
-                    withCredentials([
-			            [$class: 'UsernamePasswordMultiBinding', credentialsId: 'AWS_ACCESS_KEY',
-				        usernameVariable: 'DEPLOYMENT_USER', passwordVariable: 'DEPLOYMENT_PASSWORD']
-		            ]) {
-                    
+                    //withCredentials([
+			//            [$class: 'UsernamePasswordMultiBinding', credentialsId: 'AWS_ACCESS_KEY',
+			//	        usernameVariable: 'DEPLOYMENT_USER', passwordVariable: 'DEPLOYMENT_PASSWORD']
+		          //  ]) {
+                    withCredentials([usernamePassword(credentialsId: 'AWS_ACCESS_KEY', passwordVariable: 'DEPLOYMENT_PASSWORD', usernameVariable: 'DEPLOYMENT_USER')]) {
 		   
                     sh 'terraform init -backend-config="' + '"$BACKEND_FILE"' +  '" backend-config=' + '"subpath=$BACKEND_PATH"'
                     sh 'terraform plan -out=plan.tfplan ' + ' -var deployment_username=' + $DEPLOYMENT_USER + ' -var deployment_password=' + $DEPLOYMENT_PASSWORD
