@@ -13,6 +13,7 @@ provider "aws" {
   region="us-east-2"
   access_key = var.deployment_username
   secret_key = var.deployment_password
+  profile = "default"
 }
 
 resource "aws_s3_bucket" "terraform_state"{
