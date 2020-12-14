@@ -56,7 +56,7 @@ pipeline {
 		            ]) {
                     
                     sh 'terraform init -backend-config="' + '"$BACKEND_FILE"' +  '" backend-config=' + '"subpath=$BACKEND_PATH"'
-                    sh 'terraform plan -out=plan.tfplan ' + ' -var deployment_username="' + '"$AWS_CREDENTIALS_USR"' + ' -var deployment_password="' + '"$AWS_CREDENTIALS_PSW"'
+                    sh 'terraform plan -out=plan.tfplan ' + ' -var deployment_username=' + $AWS_CREDENTIALS_USR + ' -var deployment_password=' + $AWS_CREDENTIALS_PSW
                     
                     }
                 }
