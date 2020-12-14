@@ -3,8 +3,6 @@ pipeline {
         imageName = "chrisgallivan/automate-all-the-things-docker"
         registryCredential = 'docker_hub'
         dockerImage = ''
-        DEPLOYMENT_USER = ''
-        DEPLOYMENT_PASSWORD = ''
         BACKEND_FILE = "terraformConfig.tf"
         BACKEND_PATH = "global/s3/terraform.tfstate"
 	
@@ -57,7 +55,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'AWS_ACCESS_KEY', passwordVariable: 'DEPLOYMENT_PASSWORD', usernameVariable: 'DEPLOYMENT_USER')]) {
 		   
                     sh 'terraform init -backend-config="' + '"$BACKEND_FILE"' +  '" backend-config=' + '"subpath=$BACKEND_PATH"'
-                    sh 'terraform plan -out=plan.tfplan ' + ' -var deployment_username=' + DEPLOYMENT_USER + ' -var deployment_password=' + DEPLOYMENT_PASSWORD
+                    sh 'terraform plan -out=plan.tfplan ' + ' -var deployment_username="' + '"$DEPLOYMENT_USER"' + ' -var deployment_password="' + '"$DEPLOYMENT_PASSWORD"'
                     
                     }
                 }
