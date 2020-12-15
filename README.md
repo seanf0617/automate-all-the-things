@@ -37,7 +37,8 @@ NOTE in this example, the server will be available on port 49001 on your local m
 The first time you run jenkins you will need to login with the admin user password following the instructions [here](https://www.jenkins.io/doc/book/installing/linux/#setup-wizard).
 
 ## Getting started
-- open up a command prompt and cd to a local directory you have write access to (not the system folder)
+- fork a copy of this [repo](https://github.com/chrisgallivan/automate-all-the-things) following instructions [here](https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/fork-a-repo)
+
 - run from a command prompt: `docker run --name fcayeo -it --rm -v %CD%:/clocal fca-docker-apps.artifactory.intra.fcagroup.com/fcayeo-docker:latest`
 - drink: a small coffee or espresso
 - if your system does not permitted to use the local drive the use the: `docker cp localdir fcayeo:home/devusr/.aws/credentials' and 'docker cp localdir fcayeo:home/devusr/.aws/config'
