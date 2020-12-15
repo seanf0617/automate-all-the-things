@@ -9,7 +9,7 @@
 
 ## Prerequisites for Jenkins server
 
-- The server must be exposed to the internet to receive github commit/pull requests. For more information on how to expose a local port securely visit the ngrok site (ngrok.com).
+- The server must be exposed to the internet to receive github commit/pull requests. For more information on how to expose a local port securely visit the ngrok site (https://ngrok.com/).
 
 - install: Install node & npm on your jenkins server (https://nodejs.org/en/).
 - install: Install docker on your jenkins server (https://www.docker.com/).
