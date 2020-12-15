@@ -8,11 +8,12 @@ variable "deployment_password" {
 
 variable "region" {
   default     = "us-east-2"
-  2ebcription = "AWS region"
+  description = "AWS region"
 }
 
 variable "app" {
-  type        = stringchrisgallivan/automate-all-the-things "Name of application"
+  type        = string
+  description = "Name of application"
   default     = "automate-all-the-things"
 }
 variable "zone" {
