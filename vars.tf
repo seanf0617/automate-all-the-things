@@ -14,7 +14,7 @@ variable "region" {
 variable "app" {
   type        = string
   description = "Name of application"
-  default     = "automate-all-the-things-docker"
+  default     = "automate-all-the-things"
 }
 variable "zone" {
   default = "us-east-2b"
@@ -22,5 +22,5 @@ variable "zone" {
 variable "docker-image" {
   type        = string
   description = "name of the docker image to deploy"
-  default     = "chrisgallivan/automate-all-the-things:latest"
+  default     = "chrisgallivan/automate-all-the-things-docker:latest"
 }
