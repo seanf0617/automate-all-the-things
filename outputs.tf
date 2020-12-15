@@ -33,5 +33,5 @@ output "cluster_name" {
   value       = local.cluster_name
 }
 output "lb_ip" {
-  value = kubernetes_service.app.load_balancer_ingress[0].hostname
+  value = "http://" +  kubernetes_service.app.load_balancer_ingress[0].hostname + "/url"
 }
