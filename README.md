@@ -1,3 +1,4 @@
+
 # automate-all-the-things
 ![](/images/yoda.jfif)
 
@@ -17,7 +18,9 @@
 - install: Install aws iam authenticator on your jenkins server (https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html).
 - install: For convenience, install kubectl on the server (https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
-If you wish to run a prebuilt docker image for jenkins for this example, one is available here:
+## Pre=built Jenkins server docker image
+
+> If you wish to run a pre-built docker image for jenkins for this example, one is available here:
 
 https://hub.docker.com/repository/docker/chrisgallivan/jenkinsnpm
 
