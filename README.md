@@ -11,7 +11,8 @@
 ## Prerequisites for AWS Access
 
 - You must have a valid IAM user access id and secret key from AWS with the AdministratorAccess policy.
-- You must create a jenkins user password credential named AWS_ACEESS_KEY for this IAM user. Information on how to create credentials in Jenkins is referenced [here](https://www.jenkins.io/doc/book/using/using-credentials/). 
+- You must create a jenkins user password credential named AWS_ACEESS_KEY for this IAM user. Information on how to create credentials in Jenkins is referenced [here](https://www.jenkins.io/doc/book/using/using-credentials/). - create a Jenkins pipeline job: 
+-- T
 
 ## Prerequisites for Jenkins server
 
@@ -38,6 +39,22 @@ The first time you run jenkins you will need to login with the admin user passwo
 
 ## Getting started
 - fork a copy of this [repo](https://github.com/chrisgallivan/automate-all-the-things) following instructions [here](https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/fork-a-repo)
+- create a Jenkins pipeline job: 
+-- To configure your Pipeline project to use a Jenkinsfile from source control:
+
+Follow the procedure above for defining your Pipeline through the classic UI until you reach step 5 (accessing the Pipeline section on the Pipeline configuration page).
+
+From the Definition field, choose the Pipeline script from SCM option.
+
+From the SCM field, choose the type of source control system of the repository containing your Jenkinsfile.
+
+Complete the fields specific to your repository’s source control system.
+Tip: If you are uncertain of what value to specify for a given field, click its ? icon to the right for more information.
+
+In the Script Path field, specify the location (and name) of your Jenkinsfile. This location is the one that Jenkins checks out/clones the repository containing your Jenkinsfile, which should match that of the repository’s file structure. The default value of this field assumes that your Jenkinsfile is named "Jenkinsfile" and is located at the root of the repository.
+
+When you update the designated repository, a new build is triggered, as long as the Pipeline is configured with an SCM polling trigger.
+
 
 - run from a command prompt: `docker run --name fcayeo -it --rm -v %CD%:/clocal fca-docker-apps.artifactory.intra.fcagroup.com/fcayeo-docker:latest`
 - drink: a small coffee or espresso
