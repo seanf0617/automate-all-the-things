@@ -57,7 +57,7 @@ This project uses Terraform for provisioning the cloud infrastructure and contai
 - create a webhook from your github repo to the jenkins pipeline job following the instructions [here](https://dzone.com/articles/adding-a-github-webhook-in-your-jenkins-pipeline).
 - make a change to the README.md file in your repo. You should see your first build trigger on the jenkins pipeline job.
 - if everything is properly configured, you should see something similar to this image in your jenkins pipeline job:
-![](TimeforDevOps.jpg)
+![](./images/success.png)
 
 - click on the build - console output and look for the app_url
 
