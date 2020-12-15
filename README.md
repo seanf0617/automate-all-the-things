@@ -22,7 +22,7 @@
 
 - If you wish to run a pre-built docker image for jenkins for this example, one is available here:
 
-https://hub.docker.com/repository/docker/chrisgallivan/jenkinsnpm
+- https://hub.docker.com/repository/docker/chrisgallivan/jenkinsnpm
 
 - To run this container on your machine:
 
