@@ -49,10 +49,11 @@ pipeline {
 			           [$class: 'UsernamePasswordMultiBinding', credentialsId: 'AWS_ACCESS_KEY',
 				        usernameVariable: 'DEPLOYMENT_USERNAME', passwordVariable: 'DEPLOYMENT_PASSWORD']
 		     ]) {
-                    	           
+                    
+	            sh 'cd /var/jenkins_home/workspace/automate-all-the-things'
                     sh 'terraform init -backend-config=\"access_key=$DEPLOYMENT_USERNAME\"  -backend-config=\"secret_key=$DEPLOYMENT_PASSWORD\"'
                     sh 'terraform plan -out=plan.tfplan -var deployment_username=$DEPLOYMENT_USERNAME -var deployment_password=$DEPLOYMENT_PASSWORD'
-		            sh 'terraform apply -auto-approve plan.tfplan'
+		    sh 'terraform apply -auto-approve plan.tfplan'
                     }
                 }
             }
