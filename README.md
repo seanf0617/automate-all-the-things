@@ -8,6 +8,10 @@
 
 > An example repo for deploying a node app hosted inside a docker container to an EKS cluster in AWS. The application is built and deployed using a Jenkins CI/CD pipeline.
 
+## Prerequisites for AWS Access
+
+You must have a valid IAM user and password from AWS with the AdministratorAccess policy.
+
 ## Prerequisites for Jenkins server
 
 - The server must be exposed to the internet to receive github commit/pull requests. For more information on how to expose a local port securely visit the ngrok site (https://ngrok.com/).
@@ -30,12 +34,6 @@ If you have docker installed and wish to run this container on your machine:
 
 NOTE in this example, the server will be available on port 49001 on your local machine (http://localhost:49001/).
 The first time you run jenkins you will need to login with the admin user password following the instructions [here](https://www.jenkins.io/doc/book/installing/linux/#setup-wizard).
-
-
-
-
-## Pre-built Jenkins server docker image
-
 
 ## Getting started
 - open up a command prompt and cd to a local directory you have write access to (not the system folder)
