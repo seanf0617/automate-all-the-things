@@ -18,7 +18,7 @@
 - install: Install aws iam authenticator on your jenkins server (https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html).
 - install: For convenience, install kubectl on the server (https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
-## Pre=built Jenkins server docker image
+## Pre-built Jenkins server docker image
 
 If you wish to run a pre-built docker image for jenkins for this example, one is available here:
 
@@ -27,6 +27,14 @@ If you wish to run a pre-built docker image for jenkins for this example, one is
 If you have docker installed and wish to run this container on your machine:
 
 - run from a command prompt: `docker run -d -p 49001:8080 -v $PWD/jenkins:/var/lib/jenkins -t chrisgallivan/jenkinsnpm:latest`
+
+-NOTE in this example, the server will be available on port 49001 on your local machine (http://localhost:49001/).
+-NOTE the first time you run jenkins you will need to login with the admin user password following the instructions [here](https://www.jenkins.io/doc/book/installing/linux/#setup-wizard).
+
+
+
+
+## Pre-built Jenkins server docker image
 
 
 ## Getting started
