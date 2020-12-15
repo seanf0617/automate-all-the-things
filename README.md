@@ -11,8 +11,7 @@
 ## Prerequisites for AWS Access
 
 - You must have a valid IAM user access id and secret key from AWS with the AdministratorAccess policy.
-- You must create a jenkins user password credential named AWS_ACEESS_KEY for this IAM user. Information on how to create credentials in Jenkins is referenced [here](https://www.jenkins.io/doc/book/using/using-credentials/). - create a Jenkins pipeline job: 
--- T
+- You must create a jenkins user password credential named AWS_ACEESS_KEY for this IAM user. Information on how to create credentials in Jenkins is referenced [here](https://www.jenkins.io/doc/book/using/using-credentials/).
 
 ## Prerequisites for Jenkins server
 
