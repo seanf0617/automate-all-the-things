@@ -8,6 +8,11 @@
 
 > An example repo for deploying a node app hosted inside a docker container to an EKS cluster in AWS. The application is built and deployed using a Jenkins CI/CD pipeline.
 
+## How it works
+
+> This is a description of how this app and deployment works.
+
+
 ## Prerequisites for AWS Access
 
 - You must have a valid IAM user access id and secret key from AWS with the AdministratorAccess policy.
@@ -57,18 +62,36 @@ This project uses Terraform for provisioning the cloud infrastructure and contai
 - create a webhook from your github repo to the jenkins pipeline job following the instructions [here](https://dzone.com/articles/adding-a-github-webhook-in-your-jenkins-pipeline).
 - make a change to the README.md file in your repo. You should see your first build trigger on the jenkins pipeline job.
 - if everything is properly configured, you should see something similar to this image in your jenkins pipeline job:
+
 ![](./images/success.png)
 
 - click on the build - Console Output  - and look for the app_url declaration. Click on the hyperlink to view the deployed app on the cluster:
+
 ![](./images/app_url.png)
 
+# What I learned
+
+> I learned a ton in taking on this exercise. The following is a top 10 list of learnings (there were many more):
+
+- First time I used supertest to test a node api (using TDD)
+- First time I used a local jenkins docker image
+- First time I used ngrok :)
+- First time I published a docker image to docker hub (we have been using Artifactory)
+- First time I used s3 and dynamo for storing and locking terraform state (we have been using Artifactory)
+- First time I created an EKS cluster
+- First time I deployed a container to a cluster from Terraform
+- I learned why so many people prefer to deploy to containers. It is so easy!
+- I learned more about the grimble of Terraform, in painstaking fashion with backend auth and mutiple defns of the same provider
+- First time I used the kubernetes provider to deploy to an EKS cluster
 
 
-## Currently Tested Services
+## Improvement ideas
 
-AWS
-- Lambda
-- Lambda Layers
+- Make the jenkins container into a dockerfile for added flexibility
+- Introduce concept of environments in the pipeline and code to enable switching of environments via branching
+- Setup webhooks at the organizational level so there is no need to configure a jenkins job
+- Find a way to suppress the dockerhub publish until the stage/prod deploy to speed up the pipeline
+- Create a generator for scaffolding the repo based on user input. Could use backstage for this.
 
 
 ## Contributions
