@@ -59,7 +59,9 @@ This project uses Terraform for provisioning the cloud infrastructure and contai
 - if everything is properly configured, you should see something similar to this image in your jenkins pipeline job:
 ![](./images/success.png)
 
-- click on the build - console output and look for the app_url
+- click on the build - Console Output  - and look for the app_url declaration. Click on the hyperlink to view the deployed app on the cluster:
+![](./images/app_url.png)
+
 
 
 ## Currently Tested Services
