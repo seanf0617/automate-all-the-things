@@ -52,6 +52,7 @@ pipeline {
 		     ]) {
                     
 	            sh 'cd /var/jenkins_home/workspace/automate-all-the-things/$DEPLOYMENT_ENV'
+		    sh 'pwd'    
                     sh 'terraform init -backend-config=\"access_key=$DEPLOYMENT_USERNAME\"  -backend-config=\"secret_key=$DEPLOYMENT_PASSWORD\"'
                     sh 'terraform plan -out=plan.tfplan -var deployment_username=$DEPLOYMENT_USERNAME -var deployment_password=$DEPLOYMENT_PASSWORD'
 		    sh 'terraform apply -auto-approve plan.tfplan'
