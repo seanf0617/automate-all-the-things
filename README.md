@@ -1,3 +1,3 @@
 # automate-all-the-things
 
-testing commit trigger3
+testing commit trigger1
