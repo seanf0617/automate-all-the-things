@@ -1,6 +1,8 @@
 # automate-all-the-things
 > An example repo for deploying a node app hosted inside a docker container to an EKS cluster in AWS. The application is built and deployed using a Jenkins CI/CD pipeline.
-  <img src="./images/yoda.jfif" width="200" height ="400">
+![](/images/yoda.jfif)
+
+> We're all using it - the continuous integration and continuous delivery pipeline. 
 
 ## Prerequisites for Jenkins server
 
