@@ -32,14 +32,22 @@ If you wish to run a pre-built docker image for jenkins for this example, one is
 If you have docker installed and wish to run this container on your machine:
 
 - run from a command prompt: `docker run -d -p 49001:8080 -v $PWD/jenkins:/var/lib/jenkins -t chrisgallivan/jenkinsnpm:latest`
+- drink: a small coffee or espresso
+- The first time you run jenkins you will need to login with the admin user password following the instructions [here](https://www.jenkins.io/doc/book/installing/linux/#setup)
 
-NOTE in this example, the server will be available on port 49001 on your local machine (http://localhost:49001/).
+NOTE - In this example, the server will be available on port 49001 on your local machine (http://localhost:49001/).
 The first time you run jenkins you will need to login with the admin user password following the instructions [here](https://www.jenkins.io/doc/book/installing/linux/#setup-wizard).
 
 ## Getting started
-- fork a copy of this [repo](https://github.com/chrisgallivan/automate-all-the-things) following instructions [here](https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/fork-a-repo)
 
-- run from a command prompt: `docker run --name fcayeo -it --rm -v %CD%:/clocal fca-docker-apps.artifactory.intra.fcagroup.com/fcayeo-docker:latest`
+- fork a copy of this [repo](https://github.com/chrisgallivan/automate-all-the-things) following instructions [here](https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/fork-a-repo)
+- create a Jenkins pipeline job following the instructions [here](https://www.jenkins.io/doc/book/pipeline/getting-started/#defining-a-pipeline-in-scm).
+
+NOTE - make sure to use your forked repo in the setup of the pipeline job:)
+
+- create 
+
+
 - drink: a small coffee or espresso
 - if your system does not permitted to use the local drive the use the: `docker cp localdir fcayeo:home/devusr/.aws/credentials' and 'docker cp localdir fcayeo:home/devusr/.aws/config'
 - type: `yo` to access a list of available self-service tools 
