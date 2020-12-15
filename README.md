@@ -28,8 +28,9 @@ If you have docker installed and wish to run this container on your machine:
 
 - run from a command prompt: `docker run -d -p 49001:8080 -v $PWD/jenkins:/var/lib/jenkins -t chrisgallivan/jenkinsnpm:latest`
 
--NOTE in this example, the server will be available on port 49001 on your local machine (http://localhost:49001/).
--NOTE the first time you run jenkins you will need to login with the admin user password following the instructions [here](https://www.jenkins.io/doc/book/installing/linux/#setup-wizard).
+- NOTE in this example, the server will be available on port 49001 on your local machine (http://localhost:49001/).
+
+- NOTE the first time you run jenkins you will need to login with the admin user password following the instructions [here](https://www.jenkins.io/doc/book/installing/linux/#setup-wizard).
 
 
 
