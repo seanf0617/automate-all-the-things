@@ -32,6 +32,6 @@ output "cluster_name" {
   description = "Kubernetes Cluster Name"
   value       = local.cluster_name
 }
-output "app_endpoint" {
-  value = kubernetes_service.app.load_balancer_ingress.0.ip
+output "lb_ip" {
+  value = kubernetes_service.app.load_balancer_ingress[0].hostname
 }
