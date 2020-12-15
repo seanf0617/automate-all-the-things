@@ -10,7 +10,7 @@
 
 ## How it works
 
-> This is a description of how this app and deployment works.
+> This is a description of how this app and deployment works. I plan to place an image here shortly to show how it works.
 
 
 ## Prerequisites for AWS Access
