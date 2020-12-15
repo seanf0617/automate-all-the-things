@@ -35,3 +35,6 @@ output "cluster_name" {
 output "lb_ip" {
   value = kubernetes_service.app.load_balancer_ingress[0].hostname
 }
+output "app_url" {
+  value = format("%s%s/%s","http://",lb_ip,"/url")
+}
