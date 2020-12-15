@@ -51,9 +51,9 @@ pipeline {
 				        usernameVariable: 'DEPLOYMENT_USERNAME', passwordVariable: 'DEPLOYMENT_PASSWORD']
 		     ]) {
                     	           
-                    sh 'cd /var/jenkins_home/workspace/automate-all-the-things/$DEPLOYMENT_ENV;terraform init -backend-config=\"access_key=$DEPLOYMENT_USERNAME\"  -backend-config=\"secret_key=$DEPLOYMENT_PASSWORD\"'
-                    sh 'cd /var/jenkins_home/workspace/automate-all-the-things/$DEPLOYMENT_ENV;terraform plan -out=plan.tfplan -var deployment_username=$DEPLOYMENT_USERNAME -var deployment_password=$DEPLOYMENT_PASSWORD'
-		    sh 'cd /var/jenkins_home/workspace/automate-all-the-things/$DEPLOYMENT_ENV;terraform apply -auto-approve plan.tfplan'
+                    sh 'cd /var/jenkins_home/workspace/automate-all-the-things/dev;' + 'terraform init -backend-config=\"access_key=$DEPLOYMENT_USERNAME\"  -backend-config=\"secret_key=$DEPLOYMENT_PASSWORD\"'
+                    sh 'cd /var/jenkins_home/workspace/automate-all-the-things/dev;' + 'terraform plan -out=plan.tfplan -var deployment_username=$DEPLOYMENT_USERNAME -var deployment_password=$DEPLOYMENT_PASSWORD'
+		    sh 'cd /var/jenkins_home/workspace/automate-all-the-things/dev;' + 'terraform apply -auto-approve plan.tfplan'
                     }
                 }
             }
