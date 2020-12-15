@@ -42,29 +42,25 @@ The first time you run jenkins you will need to login with the admin user passwo
 
 - fork a copy of this [repo](https://github.com/chrisgallivan/automate-all-the-things) following instructions [here](https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/fork-a-repo)
 - create a Jenkins pipeline job following the instructions [here](https://www.jenkins.io/doc/book/pipeline/getting-started/#defining-a-pipeline-in-scm).
+- make sure to use your forked repo in the setup of the pipeline job and make sure it is pointing to the proper branch:)
 
-NOTE - make sure to use your forked repo in the setup of the pipeline job:)
+## Terraform state setup
 
-- create 
+This project uses Terraform for provisioning the cloud infrastructure and container. Prior to using terraform, you need to setup a way to handle state. 
+- log into your jenkins server and navigate to the working directory of your jenkins job
+- cp the main.tf file from the repo into a location that has terraform installed (perhaps on the jenkins server). 
+- Using your IAM credentials in the pre-requisites, run terraform init and terraform apply as documented in this [example](https://blog.gruntwork.io/how-to-manage-terraform-state-28f5697e68fa) to create your s3 bucket and dynamo db table. 
+- Re-run terraform init to upload your terraform.tfstate to the s3 bucket.
 
+## The moment of truth
 
-- drink: a small coffee or espresso
-- if your system does not permitted to use the local drive the use the: `docker cp localdir fcayeo:home/devusr/.aws/credentials' and 'docker cp localdir fcayeo:home/devusr/.aws/config'
-- type: `yo` to access a list of available self-service tools 
-
-
-## What do you get?
-
-Freedom to setup your own Github repo and CI/CD pipeline. 
-
+- create a webhook from your github repo to the jenkins pipeline job following the instructions [here](https://dzone.com/articles/adding-a-github-webhook-in-your-jenkins-pipeline).
+- make a change to the README.md file in your repo. You should see your first build trigger on the jenkins pipeline job.
+- if everything is properly configured, you should see something similar to this image in your jenkins pipeline job:
 ![](TimeforDevOps.jpg)
 
-- Generator for creating a new Github repo: Here is the Link to the [Readme](https://github.intra.fcagroup.com/FCA-NIGHTS-WATCH/generator-create-github-repo/blob/master/README.md)
-- Generator for storing and updating jenkins credentials for cloud deployment: Here is the Link to the [Readme](https://github.intra.fcagroup.com/FCA-NIGHTS-WATCH/generator-jenkins-creds/blob/master/README.md)
-- Generator for configuring the pipeline: Here is the Link to the [Readme](https://github.intra.fcagroup.com/FCA-NIGHTS-WATCH/generator-pipeline-config/blob/master/README.md)
-- Generator for importing infrastructure as code for AWS Lambda: Here is the Link to the [Readme](https://github.intra.fcagroup.com/FCA-NIGHTS-WATCH/generator-import-existing-lambda-state/blob/master/README.md)
-- Generator for storing infrastructure current state in Artifactory: Here is the Link to the [Readme](https://github.intra.fcagroup.com/FCA-NIGHTS-WATCH/generator-terraform-state-init/blob/master/README.md)
-- Access to the Enterprise CI/CD Pipeline. Here is the Link to the [Readme](README2.md)
+- click on the build - console output and look for the app_url
+
 
 ## Currently Tested Services
 
@@ -72,16 +68,6 @@ AWS
 - Lambda
 - Lambda Layers
 
-Azure
-- Function App
-- Function App Slot
-
-## How To Guides
-- How to onboard an AWS Lambda to the pipeline. [Readme](/examples/onboard_aws_lambda.md)
-- How to onboard an Azure FunctionApp/Slot to the pipeline. [Readme](/examples/onboard_azure_function_app.md)
 
 ## Contributions
-Help us make this better by making a pull request.
-
-## Questions or Comments
-Join our Google Chat Room (search for "Code Liberation Front") 
+Help me make this better by making a pull request.
