@@ -10,8 +10,7 @@
 
 ## How it works
 
-> This is a description of how this app and deployment works. I plan to place an image here shortly to show how it works.
-
+![](/images/Automate-all-the-things.png)
 
 ## Prerequisites for AWS Access
 
