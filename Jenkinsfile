@@ -14,7 +14,7 @@ pipeline {
         dockerImage = ''
         BACKEND_FILE = "terraformConfig.tf"
         BACKEND_PATH = "global/s3/terraform.tfstate"
-	BUILD_USER = '' 
+	BUILD_USER = ''
 	APP_URL = ''
     }
     agent any
@@ -65,8 +65,7 @@ pipeline {
                     sh 'terraform init -backend-config=\"access_key=$DEPLOYMENT_USERNAME\"  -backend-config=\"secret_key=$DEPLOYMENT_PASSWORD\"'
                     sh 'terraform plan -out=plan.tfplan -var deployment_username=$DEPLOYMENT_USERNAME -var deployment_password=$DEPLOYMENT_PASSWORD'
 		    sh 'terraform apply -auto-approve plan.tfplan'
-	            APP_URL = sh(script:'terraform output app_url',returnStdout: true)
-                    }
+		    }
                 }
             }
         }
@@ -75,6 +74,7 @@ pipeline {
 		    script {
 		    	BUILD_USER = getBuildUser()
 		    }
+		APP_URL = sh(script:'terraform output app_url',returnStdout: true)
                 slackSend channel: '#general-old',
                 color: COLOR_MAP[currentBuild.currentResult],
                 message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER}\n More info at: ${env.BUILD_URL} \n App URL: ${APP_URL}"
