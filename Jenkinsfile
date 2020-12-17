@@ -73,9 +73,9 @@ pipeline {
             steps {
 		    script {
 		    	BUILD_USER = getBuildUser()
+		        APP_URL = sh(script:'terraform output app_url',returnStdout: true)
 		    }
-		APP_URL = sh(script:'terraform output app_url',returnStdout: true)
-                slackSend channel: '#general-old',
+		slackSend channel: '#general-old',
                 color: COLOR_MAP[currentBuild.currentResult],
                 message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER}\n More info at: ${env.BUILD_URL} \n App URL: ${APP_URL}"
             }
