@@ -1,3 +1,4 @@
+  
 def COLOR_MAP = [
     'SUCCESS': 'good', 
     'FAILURE': 'danger',
@@ -14,8 +15,7 @@ pipeline {
         dockerImage = ''
         BACKEND_FILE = "terraformConfig.tf"
         BACKEND_PATH = "global/s3/terraform.tfstate"
-	BUILD_USER = ''
-	APP_URL = ''
+	BUILD_USER = ''    
     }
     agent any
     stages {
@@ -65,7 +65,7 @@ pipeline {
                     sh 'terraform init -backend-config=\"access_key=$DEPLOYMENT_USERNAME\"  -backend-config=\"secret_key=$DEPLOYMENT_PASSWORD\"'
                     sh 'terraform plan -out=plan.tfplan -var deployment_username=$DEPLOYMENT_USERNAME -var deployment_password=$DEPLOYMENT_PASSWORD'
 		    sh 'terraform apply -auto-approve plan.tfplan'
-		    }
+                    }
                 }
             }
         }
@@ -73,11 +73,10 @@ pipeline {
             steps {
 		    script {
 		    	BUILD_USER = getBuildUser()
-		        APP_URL = sh(script:'terraform output app_url',returnStdout: true)
 		    }
-		slackSend channel: '#general-old',
+                slackSend channel: '#general-old',
                 color: COLOR_MAP[currentBuild.currentResult],
-                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER}\n More info at: ${env.BUILD_URL} \n App URL: ${APP_URL}"
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER}\n More info at: ${env.BUILD_URL}\n APP_URL: http://a0a87a88d82c2429ca00693710427340-1289019772.us-east-2.elb.amazonaws.com/url"
             }
         }    
     }
