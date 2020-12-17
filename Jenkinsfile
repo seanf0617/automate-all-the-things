@@ -58,14 +58,12 @@ pipeline {
                 }
             }
         }
-        
+        stage('Slack it'){
+            steps {
+                slackSend channel: '#general-old', 
+                          message: 'Hello, my friends'
+            }
+        }    
     }
-     post {
-	     always {
-		     steps {
-                		slackSend channel: '#general-old', 
-                          	message: 'Hello, world'
-            		}
-	     }
-     }
+    
 }
