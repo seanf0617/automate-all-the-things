@@ -61,9 +61,11 @@ pipeline {
         
     }
      post {
-	steps {
-                slackSend channel: '#general-old', 
-                          message: 'Hello, world'
-            }
+	     always {
+		     steps {
+                		slackSend channel: '#general-old', 
+                          	message: 'Hello, world'
+            		}
+	     }
      }
 }
