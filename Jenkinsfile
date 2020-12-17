@@ -60,5 +60,10 @@ pipeline {
         }
         
     }
-        
+     post {
+	steps {
+                slackSend channel: '#general-old', 
+                          message: 'Hello, world'
+            }
+     }
 }
