@@ -1,3 +1,12 @@
+def COLOR_MAP = [
+    'SUCCESS': 'good', 
+    'FAILURE': 'danger',
+]
+
+def getBuildUser() {
+    return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
+}
+
 pipeline {
     environment {
         imageName = "chrisgallivan/automate-all-the-things-docker"
@@ -5,10 +14,11 @@ pipeline {
         dockerImage = ''
         BACKEND_FILE = "terraformConfig.tf"
         BACKEND_PATH = "global/s3/terraform.tfstate"
+	BUILD_USER = ''    
     }
     agent any
     stages {
-        stage('Build') {
+        stage('Build Node App') {
             steps {
                 echo 'Building Node app...'
                 sh 'npm install-test'
@@ -33,7 +43,7 @@ pipeline {
                 }
              }
         }
-        stage('Remove Local Image') {
+        stage('Cleanup Local Image') {
             steps {
                script {
                     sh "docker rmi $imageName:$BUILD_NUMBER"
@@ -41,7 +51,7 @@ pipeline {
                     }
                 }
         }
-        stage('Provision Cluster') {
+        stage('Provision Cluster & Deploy Image') {
             steps {
                 script {
                     echo 'Provisioning Kubernetes Cluster...'
@@ -58,10 +68,14 @@ pipeline {
                 }
             }
         }
-        stage('Slack it'){
+        stage('Slack Notification'){
             steps {
-                slackSend channel: '#general-old', 
-                          message: 'Hello, my friends'
+		    script {
+		    	BUILD_USER = getBuildUser()
+		    }
+                slackSend channel: '#general-old',
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER}\n More info at: ${env.BUILD_URL}"
             }
         }    
     }
