@@ -68,7 +68,7 @@ pipeline {
                 script {
                     echo 'Provisioning Kubernetes Cluster...'
                     withCredentials([
-			           [$class: 'UsernamePasswordMultiBinding', credentialsId: 'AWS_ACCESS_KEY',
+			    [$class: 'UsernamePasswordMultiBinding', credentialsId: '${awsCredential}',
 				        usernameVariable: 'DEPLOYMENT_USERNAME', passwordVariable: 'DEPLOYMENT_PASSWORD']
 		     ]) {
                     
@@ -82,11 +82,23 @@ pipeline {
         }
         stage('Slack Notification'){
             steps {
-                slackSend channel: '#general-old',
+                slackSend channel:  "${slackChannel}",
                 color: COLOR_MAP[currentBuild.currentResult],
                 message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}\n APP_URL:http://a0a87a88d82c2429ca00693710427340-1289019772.us-east-2.elb.amazonaws.com/url"
             }
-        }    
+        
+	}    
     }
+    post {
     
+        success {
+            sh "${successAction}"
+        
+        }
+    
+        failure {
+		sh "${failureAction}"
+        
+        }
+    }
 }
