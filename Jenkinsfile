@@ -48,7 +48,7 @@ pipeline {
             steps {
                script {
                     echo 'Publishing Image to Docker Hub...'
-         //           docker.withRegistry( '', dockerHubCredential ) {
+                    docker.withRegistry( '', dockerHubCredential ) {
            //             dockerImage.push("$BUILD_NUMBER")
              //           dockerImage.push('latest')
                     }
