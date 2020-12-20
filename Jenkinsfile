@@ -40,7 +40,7 @@ pipeline {
              steps {
                 script{
                     echo 'Building Docker image...'
-                    dockerImage = docker.build imageName
+               //     dockerImage = docker.build imageName
                 }
              }
         }
@@ -48,9 +48,9 @@ pipeline {
             steps {
                script {
                     echo 'Publishing Image to Docker Hub...'
-                    docker.withRegistry( '', dockerHubCredential ) {
-                        dockerImage.push("$BUILD_NUMBER")
-                        dockerImage.push('latest')
+         //           docker.withRegistry( '', dockerHubCredential ) {
+           //             dockerImage.push("$BUILD_NUMBER")
+             //           dockerImage.push('latest')
                     }
                 }
              }
@@ -68,7 +68,7 @@ pipeline {
                 script {
                     echo 'Provisioning Kubernetes Cluster...'
                     withCredentials([
-			    [$class: 'UsernamePasswordMultiBinding', credentialsId: '${awsCredential}',
+			    [$class: 'UsernamePasswordMultiBinding', credentialsId: "${awsCredential}",
 				        usernameVariable: 'DEPLOYMENT_USERNAME', passwordVariable: 'DEPLOYMENT_PASSWORD']
 		     ]) {
                     
