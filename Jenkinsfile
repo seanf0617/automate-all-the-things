@@ -40,7 +40,7 @@ pipeline {
              steps {
                 script{
                     echo 'Building Docker image...'
-               //     dockerImage = docker.build imageName
+                    dockerImage = docker.build imageName
                 }
              }
         }
@@ -49,8 +49,8 @@ pipeline {
                script {
                     echo 'Publishing Image to Docker Hub...'
                     docker.withRegistry( '', dockerHubCredential ) {
-           //             dockerImage.push("$BUILD_NUMBER")
-             //           dockerImage.push('latest')
+                        dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push('latest')
                     }
                 }
              }
