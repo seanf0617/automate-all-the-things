@@ -80,24 +80,26 @@ pipeline {
                 }
             }
         }
-        stage('Slack Notification'){
-            steps {
+   
+    }
+    post { 
+        success {
+           steps {
                 slackSend channel:  "${slackChannel}",
                 color: COLOR_MAP[currentBuild.currentResult],
                 message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}\n APP_URL:http://a0a87a88d82c2429ca00693710427340-1289019772.us-east-2.elb.amazonaws.com/url"
             }
-        
-	}    
-    }
-    post {
-    
-        success {
-            sh "${successAction}"
+	  sh "${successAction}"
         
         }
     
         failure {
-		sh "${failureAction}"
+	 steps {
+                slackSend channel:  "${slackChannel}",
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}\n APP_URL:http://a0a87a88d82c2429ca00693710427340-1289019772.us-east-2.elb.amazonaws.com/url"
+            }
+	 sh "${failureAction}"
         
         }
     }
