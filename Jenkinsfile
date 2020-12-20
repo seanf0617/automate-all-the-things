@@ -10,20 +10,20 @@ def loadValuesYaml(x){
 pipeline {
     environment {
         
-	    'credentials
+	    //credentials
 	    dockerHubCredential = loadValuesYaml('dockerHubCredential')
             awsCredential = loadValuesYaml('awsCredential')
 	    
-	    'docker config
+	    //docker config
 	    imageName = loadValuesYaml('imageName')
 	    slackChannel = loadValuesYaml('slackChannel')
 	    dockerImage = ''
 	    
-	    's3 config
+	    //s3 config
             backendFile = loadValuesYaml('backendFile')
             backendPath = loadValuesYaml('backendPath')
 	    
-	    'additional external feedback
+	    //additional external feedback
 	    successAction = loadValuesYaml('successAction')
 	    failureAction = loadValuesYaml('failureAction')  
 	    
