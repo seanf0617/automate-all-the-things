@@ -26,6 +26,7 @@ pipeline {
 	    //additional external feedback
 	    successAction = loadValuesYaml('successAction')
 	    failureAction = loadValuesYaml('failureAction')  
+	    app_url = ''
 	    
    }
     agent any
@@ -76,6 +77,10 @@ pipeline {
                     sh 'terraform init -backend-config=\"access_key=$DEPLOYMENT_USERNAME\"  -backend-config=\"secret_key=$DEPLOYMENT_PASSWORD\"'
                     sh 'terraform plan -out=plan.tfplan -var deployment_username=$DEPLOYMENT_USERNAME -var deployment_password=$DEPLOYMENT_PASSWORD'
 		    sh 'terraform apply -auto-approve plan.tfplan'
+	            app_url = sh (
+			script: "terraform output app_url",
+                        returnStdout: true
+                     ).trim()   
                     }
                 }
             }
