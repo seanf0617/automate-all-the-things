@@ -6,8 +6,6 @@ module "eks" {
 
   tags = {
     Environment = "development"
-    GithubRepo  = "automate-all-the-things"
-    GithubOrg   = "chrisgallivan"
   }
 
   vpc_id = module.vpc.vpc_id
