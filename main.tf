@@ -1,5 +1,5 @@
 provider "aws" { 
-  region="us-east-2"
+  region= var.region
   access_key= var.deployment_username
   secret_key = var.deployment_password
  }
