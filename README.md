@@ -53,8 +53,11 @@ The first time you run jenkins you will need to login with the admin user passwo
 This project uses Terraform for provisioning the cloud infrastructure and container. Prior to using terraform, you need to setup a way to handle state. 
 - log into your jenkins server and navigate to the working directory of your jenkins job
 - cp the main.tf and vars.tf files from the repo into a location that has terraform installed (perhaps on the jenkins server). 
-- Using your IAM credentials in the pre-requisites, run terraform init and terraform apply as documented in this [example](https://blog.gruntwork.io/how-to-manage-terraform-state-28f5697e68fa) to create your s3 bucket and dynamo db table. 
-- Re-run terraform init to upload your terraform.tfstate to the s3 bucket.
+-modify the vars.tf file based on your preferences.
+- make sure your local aws client credentials and config files are properly configured.
+- run terraform init and terraform apply as documented in this [example](https://blog.gruntwork.io/how-to-manage-terraform-state-28f5697e68fa) to create your s3 bucket and dynamo db table. 
+- copy the terraformConfig.tf file to the same location you copied the other files. Modify this file based on your vars.tf file.
+- Re-run terraform init to upload your local terraform.tfstate to the s3 bucket.
 
 ## The moment of truth
 
