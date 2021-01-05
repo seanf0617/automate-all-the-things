@@ -35,7 +35,7 @@ If you wish to run a pre-built docker image for jenkins for this example, one is
 
 If you have docker installed and wish to run this container on your machine:
 
-- run from a command prompt: `docker run -d -p 49001:8080 -v $PWD/jenkins:/var/lib/jenkins -t chrisgallivan/jenkinsnpm:latest`
+- run from a command prompt: `docker run -d -p 49001:8080 -v c:/git:/var/jenkins_home:z -v /var/run/docker.sock:/var/run/docker.sock -t chrisgallivan/jenkinsnpm:latest`
 - drink: a small coffee or espresso
 - The first time you run jenkins you will need to login with the admin user password following the instructions [here](https://www.jenkins.io/doc/book/installing/linux/#setup)
 
