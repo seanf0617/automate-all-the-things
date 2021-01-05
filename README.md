@@ -50,18 +50,17 @@ The first time you run jenkins you will need to login with the admin user passwo
 - fork a copy of this [repo](https://github.com/chrisgallivan/automate-all-the-things) following instructions [here](https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/fork-a-repo)
 - create a Jenkins pipeline job following the instructions [here](https://www.jenkins.io/doc/book/pipeline/getting-started/#defining-a-pipeline-in-scm).
 - make sure to use your forked repo in the setup of the pipeline job and make sure it is pointing to the proper branch:)
-- I have included a pipelineconfig.yml file for customizing your usage of this repo. 
+- I have included a pipelineconfig.yml file for customizing your usage of this repo. The following parameters are available: 
 
-`imageName: "chrisgallivan/automate-all-the-things-docker"
-bucketName: ""
-backendFile: "terraformConfig.tf"
-backendPath: "global/s3/terraform.tfstate"
-dockerHubCredential: "docker_hub"
-awsCredential: "AWS_ACCESS_KEY"
-slackToken: ""
-slackChannel: "general-old"
-successAction: "curl -X POST https://maker.ifttt.com/trigger/jenkins_success/with/key/geqAu4WK7xgLcr4md038_CrKCsXrRjZbJ9MsQBwPLg9"
-failureAction: "curl -X POST https://maker.ifttt.com/trigger/jenkins_failure/with/key/geqAu4WK7xgLcr4md038_CrKCsXrRjZbJ9MsQBwPLg9"`
+- imageName: The docker image name from docker hub you wish to deploy to kubernetes (i.e. "chrisgallivan/automate-all-the-things-docker").
+- bucketName: The bucket name you wish to create to store the terraform remote state (i.e. "automate-all-the-things-terraform-state").
+- backendFile: The name of the file that stores your backend config (i.e. "terraformConfig.tf").
+- backendPath:  The path in the S3 bucket to store your state file.(i.e. "global/s3/terraform.tfstate").
+- dockerHubCredential: The name of your jenkins docker hub credential (i.e. "docker_hub").
+- awsCredential: The name of the jenkins AWS credential (i.e. "AWS_ACCESS_KEY").
+- slackChannel: The name of the slack channel to post to (i.e. "general").
+- successAction: Used for extreme feedback on pipleine feedback (i.e. "curl -X POST https://maker.ifttt.com/trigger/jenkins_success/with/key/geqAu4WK7xgLcr4md038_CrKCsXrRjZbJ9MsQBwPLg9").
+- failureAction: Used for extreme feedback on pipleine feedback (i.e. "curl -X POST https://maker.ifttt.com/trigger/jenkins_failure/with/key/geqAu4WK7xgLcr4md038_CrKCsXrRjZbJ9MsQBwPLg9").
 
 ## Terraform state setup
 
