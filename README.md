@@ -12,10 +12,12 @@
 
 ![](/images/Automate-all-the-things.png)
 
-## Prerequisites for AWS Access
+## Prerequisite Credentials
 
 - You must have a valid IAM user access id and secret key from AWS with the AdministratorAccess policy.
-- You must create a jenkins user password credential named 'AWS_ACCESS_KEY' for this IAM user. Information on how to create credentials in Jenkins is referenced [here](https://www.jenkins.io/doc/book/using/using-credentials/). 
+- You must create a jenkins user password credential named 'AWS_ACCESS_KEY' for this IAM user. Information on how to create credentials in Jenkins is referenced [here](https://www.jenkins.io/doc/book/using/using-credentials/).
+- You must create a jenkins user password credential named 'docker_hub' for accessing docker hub.
+- You must create a token for accessing slack and store it in a secret text credential in Jenkins. Follow the instructions [here](https://plugins.jenkins.io/slack/).
 
 ## Prerequisites for Jenkins server
 
@@ -26,6 +28,7 @@
 - install: Install terraform  on your jenkins server (https://www.terraform.io/).
 - install: Install aws iam authenticator on your jenkins server (https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html).
 - install: For convenience, install kubectl on the server (https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+- install: The standard recommended Jenkins plugins along with the following plugins: Slack Notifier, Pipeline Utility Steps, and Docker Pipeline.
 
 ## Pre-built Jenkins server docker image
 
